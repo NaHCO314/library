@@ -1,8 +1,8 @@
 def dijkstra(g, s):
     n = len(g)
-    dist = [INF] * n
-    hq = [(0, s)]
+    dist = [float("INF")] * n
     dist[s] = 0
+    hq = [(0, s)]
     seen = [False] * n
     while hq:
         v = heapq.heappop(hq)[1]
@@ -13,4 +13,7 @@ def dijkstra(g, s):
                 heapq.heappush(hq, (dist[to], to))
     return dist
 
+# dijkstra(グラフ, 開始地点)
+# 戻り値はリストで、[i]にはiまでの最短コストがある
 # 隣接リスト [[[ノード, コスト]...]...]
+# O(V^2)
