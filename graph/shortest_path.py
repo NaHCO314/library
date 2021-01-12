@@ -21,13 +21,13 @@ def dijkstra(g, s):
 def BFS(g, s):
     dist = [float("INF")] * len(g)
     dist[s] = 0
-    q, pos = collections.deque([s]), [False] * len(g)
+    q, pos = collections.deque([s]), set([s])
     while q:
         s = q.popleft()
         for i in g[s]:
-            if not pos[i]:
+            if i not in pos:
                 dist[i] = dist[s] + 1
-                pos[i] = True
+                pos.add(i)
                 q.append(i)
     return dist
 
