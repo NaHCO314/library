@@ -11,7 +11,7 @@ def DFS(g, s, pos=None):
 def BFS(g, s):
     q, pos = collections.deque([s]), set([s])
     while q:
-        s = q.pop()
+        s = q.popleft()
         for i in g[s]:
             if i not in pos:
                 pos.add(i)
