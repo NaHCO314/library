@@ -1,0 +1,38 @@
+import math
+
+GCD = math.gcd
+
+
+def LCM(n, m):
+    return (n * m) // GCD(n, m)
+
+
+def div(n):
+    l, u = [], []
+    i = 1
+    while i * i <= n:
+        if n % i == 0:
+            l.append(i)
+            if i != n // i:
+                u.append(n // i)
+        i += 1
+    return l + u[::-1]
+# 約数のリスト
+
+
+def prime(n):
+    a = []
+    while n % 2 == 0:
+        a.append(2)
+        n //= 2
+    f = 3
+    while f * f <= n:
+        if n % f == 0:
+            a.append(f)
+            n //= f
+        else:
+            f += 2
+    if n != 1:
+        a.append(n)
+    return a
+# 素因数分解のリスト
