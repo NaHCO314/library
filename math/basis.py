@@ -1,10 +1,10 @@
 import math
 
-GCD = math.gcd
+gcd = math.gcd
 
 
-def LCM(n, m):
-    return (n * m) // GCD(n, m)
+def lcm(n, m):
+    return (n * m) // gcd(n, m)
 
 
 def div(n):
