@@ -36,3 +36,19 @@ def prime(n):
         a.append(n)
     return a
 # 素因数分解のリスト
+
+
+def C(n, r):
+    if n < r:
+        return 0
+    return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
+
+
+def P(n, r):
+    if n < r:
+        return 0
+    return math.factorial(n) // math.factorial(n - r)
+
+
+def H(n, r):
+    return C(n + r - 1, r)
