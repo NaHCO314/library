@@ -3,7 +3,7 @@ class WeightedUnionFind(UnionFind):
     def __init__(self, n):
         self.__weight = [0] * n
         self.__n = n
-        self.__parents = [-1 for i in range(n)]
+        self.__parents = [-1] * n
 
     def union(self, x, y, w):
         w += self.weight(x) - self.weight(y)
