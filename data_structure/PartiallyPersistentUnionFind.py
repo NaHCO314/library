@@ -1,31 +1,34 @@
+import bisect
+
+
 class PartiallyPersistentUnionFind:
     def __init__(self, n):
-        self.now = 0
-        self.time = [None] * n
-        self.count = [[] for i in range(n)]
-        self.count_time = [[] for i in range(n)]
+        self.__now = 0
+        self.__time = [None] * n
+        self.__count = [[] for i in range(n)]
+        self.__count_time = [[] for i in range(n)]
         self.__n = n
         self.__parents = [-1] * n
 
     def union(self, x, y):
-        self.now += 1
-        x, y = self.find(x, self.now), self.find(y, self.now)
+        self.__now += 1
+        x, y = self.find(x, self.__now), self.find(y, self.__now)
         if x != y:
             if self.__parents[x] > self.__parents[y]:
                 x, y = y, x
-            self.count_time[x] += [self.now]
-            self.count[x] += [self.size(x, self.now) + self.size(y, self.now)]
+            self.__count_time[x] += [self.__now]
+            self.__count[x] += [self.size(x, self.__now) + self.size(y, self.__now)]
             self.__parents[x] += self.__parents[y]
             self.__parents[y] = x
-            self.time[y] = self.now
+            self.__time[y] = self.__now
 
     def find(self, x, t):
-        while t >= self.time[x]:
+        while t >= self.__time[x]:
             x = self.__parents[x]
         return x
 
     def size(self, x, t):
-        return self.count[self.find(x, t)][bisect.bisect_right(self.count_time, t)-1]
+        return self.__count[self.find(x, t)][bisect.bisect_right(self.__count_time, t) - 1]
 
     def same(self, x, y, t):
          return self.find(x, t) == self.find(y, t)
