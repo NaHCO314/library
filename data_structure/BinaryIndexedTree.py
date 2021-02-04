@@ -1,11 +1,11 @@
 class BinaryIndexedTree:
     def __init__(self, n):
-        self.data, self.n = [0] * n, n
+        self.__data, self.__n = [0] * n, n
 
     def add(self, p, x):
         p += 1
-        while p <= self.n:
-            self.data[p - 1] += x
+        while p <= self.__n:
+            self.__data[p - 1] += x
             p += p & -p
 
     def sum(self, l, r):
@@ -14,6 +14,6 @@ class BinaryIndexedTree:
     def __sum(self, r):
         s = 0
         while r:
-            s += self.data[r - 1]
+            s += self.__data[r - 1]
             r -= r & -r
         return s
