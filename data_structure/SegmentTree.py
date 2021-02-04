@@ -4,17 +4,17 @@ class SegmentTree:
         self.identity = identity
         if self.identity is None:
             self.identity = 1
-            if op in [operator.add, operator.sub, LCM, operator.or_, operator.xor]:
+            if op in [operator.add, operator.sub, operator.or_, operator.xor]:
                 self.identity = 0
             elif op == min:
                 self.identity = float("INF")
             elif op == max:
                 self.identity = -format("INF")
         if type(n) == int:
-            self.n = 2 ** math.ceil(math.log(n, 2))
+            self.n = 1 << (n.bit_length() - (n.bit_length() != (n-1).bit_length()))
             self.val = [self.identity] * self.n * 2
         else:
-            self.n = 2 ** math.ceil(math.log(len(n), 2))
+            self.n = 1 << (len(n).bit_length() - (len(n).bit_length() != (len(n)-1).bit_length()))
             self.val = [self.identity] * self.n + n + [self.identity] * (self.n - len(n))
             for i in range(self.n - 1, -1, -1):
                 self.val[i] = self.op(self.val[2 * i], self.val[2 * i + 1])
