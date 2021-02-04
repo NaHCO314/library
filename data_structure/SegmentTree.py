@@ -9,7 +9,7 @@ class SegmentTree:
             elif op == min:
                 self.identity = float("INF")
             elif op == max:
-                self.identity = -format("INF")
+                self.identity = -float("INF")
         if type(n) == int:
             self.n = 1 << (n.bit_length() - (n.bit_length() != (n-1).bit_length()))
             self.val = [self.identity] * self.n * 2
