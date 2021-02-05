@@ -3,7 +3,7 @@ def DFS(g, s, pos=None):
         pos = set()
     pos.add(s)
     for i in g[s]:
-        if not (i in pos):
+        if i not in pos:
             DFS(g, i, pos)
     return pos
 
