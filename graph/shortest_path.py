@@ -18,7 +18,7 @@ def dijkstra(g, s):
 # 隣接リスト [[[ノード, コスト]...]...]
 # O((E+V) log V)
 
-def BFS(g, s):
+def BFS_dist(g, s):
     dist = [float("INF")] * len(g)
     dist[s] = 0
     q, pos = collections.deque([s]), set([s])
@@ -35,3 +35,24 @@ def BFS(g, s):
 # 戻り値はリストで、[i]にはiまでの最短距離がある
 # 隣接リスト [[ノード...]...]
 # O(E)
+
+
+def DFS_path(g, s, n, pos=None, path=None):
+    if pos is None:
+        pos = set()
+    if path is None:
+        path = []
+    path += [s]
+    pos.add(s)
+    if s == n:
+        return path
+    for i in g[s]:
+        if i not in pos:
+            ret = DFS_path(g, i, n, pos, path)
+            if ret:
+                return ret
+    del path[-1]
+    return False
+
+# DFS_path(グラフ, 開始地点, 終了地点)
+# 開始地点から終了地点までのパスをリストで返す
