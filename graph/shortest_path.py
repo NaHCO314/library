@@ -5,12 +5,13 @@ def dijkstra(g, s):
     q = [(0, s)]
     seen = [False] * n
     while q:
-        v = heapq.heappop(q)[1]
-        seen[v] = True
-        for i, j in g[v]:
-            if seen[i] == False and dist[v] + j < dist[i]:
-                dist[i] = dist[v] + j
-                heapq.heappush(q, (dist[i], i))
+        c, v = heapq.heappop(q)
+        if dist[v] >= c:
+            seen[v] = True
+            for i, j in g[v]:
+                if seen[i] == False and dist[v] + j < dist[i]:
+                    dist[i] = c + j
+                    heapq.heappush(q, (dist[i], i))
     return dist
 
 # dijkstra(グラフ, 開始地点)
