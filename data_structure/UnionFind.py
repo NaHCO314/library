@@ -2,7 +2,6 @@ class UnionFind:
     def __init__(self, n):
         self.__n = n
         self.__parents = [-1] * n
-        self.__root = set(range(n))
 
     def union(self, x, y):
         x, y = self.find(x), self.find(y)
@@ -11,7 +10,6 @@ class UnionFind:
                 x, y = y, x
             self.__parents[x] += self.__parents[y]
             self.__parents[y] = x
-            self.__root.remove(y)
 
     def find(self, x):
         y = x
@@ -27,21 +25,4 @@ class UnionFind:
         return -self.__parents[self.find(x)]
 
     def same(self, x, y):
-         return self.find(x) == self.find(y)
-
-    def members(self, x):
-        root = self.find(x)
-        return [i for i in range(len(self.__parents)) if self.find(i) == root]
-
-    def roots(self):
-        return self.__root
-
-    def group_count(self):
-        return len(self.roots())
-
-    def max_size(self):
-        return -min(self.__parents)
-
-    def min_size(self):
-        return -max(self.roots())
-    
+        return self.find(x) == self.find(y)
