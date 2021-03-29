@@ -15,10 +15,10 @@ def inv_gcd(n, m):
 
 
 def is_prime(n):
-    if n <= 1 or n % 2 == 0:
-        return False
     if n in (2, 7, 61):
         return True
+    if n <= 1 or n % 2 == 0:
+        return False
     d = n - 1
     d //= d & -d
     bases = (2, 7, 61)
